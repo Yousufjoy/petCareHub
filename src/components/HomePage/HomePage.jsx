@@ -1,9 +1,14 @@
-import Image from "next/image";
 import React from "react";
-import Navbar from "../Shared/Navbar";
+import Banner from "./Banner";
+import AboutUs from "./AboutUs";
 
 function HomePage() {
-  return <div></div>;
+  return (
+    <div>
+      <Banner />
+      <AboutUs />
+    </div>
+  );
 }
 
 export default HomePage;

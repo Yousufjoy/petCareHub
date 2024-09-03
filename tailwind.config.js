@@ -10,6 +10,9 @@ module.exports = {
       fontFamily: {
         fanwood: ["Fanwood_Text", "serif"],
       },
+      colors: {
+        primary: "#7A7A7A",
+      },
     },
   },
   plugins: [require("daisyui")],
