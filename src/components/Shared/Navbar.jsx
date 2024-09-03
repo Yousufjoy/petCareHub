@@ -85,7 +85,7 @@ const navItems = [
   },
   {
     title: "About",
-    path: "/about",
+    path: "",
   },
   {
     title: "Products",
@@ -93,7 +93,7 @@ const navItems = [
   },
   {
     title: "Contact",
-    path: "/contact",
+    path: "",
   },
 ];
 
