@@ -16,8 +16,11 @@ function Products() {
   }, []);
   return (
     <div>
-      <div className=" md:grid md:grid-cols-3 md:gap-6 md:mx-5 md:mt-24">
-        {products.slice(0, 6).map((prod, id) => (
+      <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[80px] ">
+        Products
+      </h1>
+      <div className=" md:grid md:grid-cols-4 md:gap-12 md:mx-auto md:mt-12 ml-[20px] ">
+        {products.slice(0, 8).map((prod, id) => (
           <ProductCard key={id} products={prod}></ProductCard>
         ))}
       </div>

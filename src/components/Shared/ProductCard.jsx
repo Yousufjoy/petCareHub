@@ -19,7 +19,7 @@ function ProductCard({ products }) {
           <p>{price}</p>
           <div className="card-actions justify-end">
             <Link href={`/products/${_id}`}>
-              <button className="btn btn-primary">Buy Now</button>
+              <button className="btn btn-primary">Show Details</button>
             </Link>
           </div>
         </div>

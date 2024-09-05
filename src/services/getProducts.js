@@ -1,6 +1,11 @@
 export const getProductDetails = async (id) => {
-    const res = await fetch(`http://localhost:3000/products/api/${id}`);
-    const product = await res.json();
-    return product;  
-  };
-  
+  const res = await fetch(`http://localhost:3000/products/api/${id}`);
+  const product = await res.json();
+  return product;
+};
+
+export const getProductCategory = async (category) => {
+  const res = await fetch(`http://localhost:3000/category/api/${category}`);
+  const product = await res.json();
+  return product;
+};

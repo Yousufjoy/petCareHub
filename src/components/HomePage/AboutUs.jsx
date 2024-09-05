@@ -22,7 +22,7 @@ function AboutUs() {
       </div>
 
       <div className="md:w-2/3 md:pl-[200px] md:mt-[50px] ">
-        <h1 className="font-fanwood text-primary md:text-[70px] md:text-start text-center text-[40px] md:pt-[70px] ">
+        <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[70px] ">
           About Us
         </h1>
         <div className=" md:flex md:gap-32 ">
