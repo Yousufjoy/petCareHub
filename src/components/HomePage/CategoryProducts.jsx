@@ -14,7 +14,7 @@ function CategoryProducts() {
           Shop By Pet
         </h1>
 
-        <div className="md:flex md:justify-around">
+        <div className="md:flex md:justify-around md:ml-[0px] ml-[100px] mt-5 ">
           <Link href={`/category/${catFood}`}>
             <Image
               src="/assets/categoryCat.png"

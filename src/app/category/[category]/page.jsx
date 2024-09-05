@@ -25,8 +25,8 @@ const CategoryPage = ({ params }) => {
 
   return (
     <div>
-      <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[80px]">
-        Products
+      <h1 className="font-fanwood text-primary md:text-[50px] md:text-start text-center text-[40px] md:pt-[80px]">
+     Products
       </h1>
 
       {/* Check for products to avoid mapping null */}

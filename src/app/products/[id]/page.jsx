@@ -1,15 +1,18 @@
 import { getProductDetails } from "@/services/getProducts";
+import Image from "next/image";
 import React from "react";
 
 const ProductDetails = async ({ params }) => {
   console.log(params.id); // Ensure this logs the correct ID
   const details = await getProductDetails(params.id);
-  console.log(details.product);
- 
+
+  const { category, title, description, price, image, brand } =
+    details?.product;
 
   return (
     <div>
-   <p>{details.product.title}</p>
+      <Image src={image} height={400} width={400} alt="No Image Found"></Image>
+      <p>{category}</p>
     </div>
   );
 };
