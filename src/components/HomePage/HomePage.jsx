@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import AboutUs from "./AboutUs";
 import Products from "./Products";
 import CategoryProducts from "./CategoryProducts";
+import ContactUs from "./ContactUs";
 
 function HomePage() {
   return (
@@ -11,6 +12,7 @@ function HomePage() {
       <AboutUs />
       <CategoryProducts />
       <Products />
+      <ContactUs />
     </div>
   );
 }

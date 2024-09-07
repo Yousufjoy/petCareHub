@@ -1,4 +1,7 @@
+"use client";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 function Banner() {
@@ -15,7 +18,7 @@ function Banner() {
               alt="No Banner Image Found"
             ></Image>
             <Image
-              className="absolute bottom-40 z-10" // Added z-10 here
+              className="absolute bottom-40 z-10"
               src="/assets/bannerBg.png"
               width={426}
               height={629}
@@ -35,7 +38,10 @@ function Banner() {
             animals, birds, reptiles, and fish, for purchase.
           </p>
           <div className="mt-5">
-            <button className="btn btn-primary">Get Started</button>
+            <Link href="/login" className="btn btn-primary">
+              Get Started
+            </Link>
+            {/* <button className="btn btn-active btn-ghost">Get Started</button> */}
           </div>
         </div>
       </div>

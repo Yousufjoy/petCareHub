@@ -1,29 +1,28 @@
 "use client";
+
+import ProductCard from "@/components/Cards/ProductCard";
+import { getAllProducts } from "@/services/getProducts";
 import React, { useEffect, useState } from "react";
 
-import { getAllProducts } from "@/services/getProducts";
-import ProductCard from "../Cards/ProductCard";
-
-function Products() {
+const AllProductsPage = () => {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const getAllProductsData = async () => {
       const data = await getAllProducts();
       setProducts(data?.products || []);
     };
-
-    fetchProducts();
+    getAllProductsData();
   }, []);
 
   return (
     <div>
       <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[80px] ">
-        Products
+        All Products
       </h1>
       {products ? (
-        <div className="md:grid md:grid-cols-4 gap-24 md:mx-auto md:mt-12 ml-[20px]">
-          {products.slice(0, 9).map((prod, id) => (
+        <div className="md:grid md:grid-cols-4 md:gap-24 md:mx-auto md:mt-12 ml-[20px]">
+          {products.map((prod, id) => (
             <ProductCard key={id} products={prod}></ProductCard>
           ))}
         </div>
@@ -32,6 +31,6 @@ function Products() {
       )}
     </div>
   );
-}
+};
 
-export default Products;
+export default AllProductsPage;
