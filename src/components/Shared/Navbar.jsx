@@ -78,14 +78,7 @@ const Navbar = () => {
         } md:hidden absolute top-full left-0 w-full bg-white p-2 z-50`}
       >
         <ul className="flex flex-col-reverse gap-y-4 items-center justify-center  text-[#7A7A7A] font-fanwood text-xl shadow-lg rounded-3xl border-4 border-transparent bg-gradient-to-r from-[#EEE9F2] to-white">
-          {session?.status === "authenticated" ? (
-            <div className="flex flex-col gap-y-3 mt-4">
-              <FiLogOut
-                className="text-3xl cursor-pointer text-[#FFB7B7]"
-                onClick={() => signOut()}
-              ></FiLogOut>
-            </div>
-          ) : (
+          {session?.status === "unauthenticated" && (
             <div className="flex flex-col gap-y-3 mt-4">
               <Link href="/login" className="btn btn-primary px-8">
                 Login
@@ -95,6 +88,16 @@ const Navbar = () => {
               </Link>
             </div>
           )}
+
+          {session?.status === "authenticated" && (
+            <div className="flex flex-col gap-y-3 mt-4">
+              <FiLogOut
+                className="text-3xl cursor-pointer text-[#FFB7B7]"
+                onClick={() => signOut()}
+              ></FiLogOut>
+            </div>
+          )}
+
           {navItems.map((item, index) => (
             <li
               key={index}
@@ -117,7 +120,7 @@ const navItems = [
     path: "/",
   },
   {
-    title: "About",
+    title: "Blog",
     path: "",
   },
   {
@@ -125,7 +128,7 @@ const navItems = [
     path: "/products",
   },
   {
-    title: "Contact",
+    title: "Adoption",
     path: "",
   },
 ];
