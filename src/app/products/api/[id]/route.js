@@ -1,3 +1,7 @@
+// This is 3rd phase where business logic is handled
+
+
+
 import { connectDB } from "@/lib/connectDB";
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb"; // Import ObjectId

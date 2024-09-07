@@ -11,7 +11,7 @@ const ProductDetails = async ({ params }) => {
 
   return (
     <div>
-      <Image src={image} height={400} width={400} alt="No Image Found"></Image>
+      <Image src={image} height={500} width={500} alt="No Image Found"></Image>
       <p>{category}</p>
     </div>
   );
