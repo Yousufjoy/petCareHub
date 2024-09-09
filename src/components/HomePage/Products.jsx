@@ -1,43 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProductCard from "../Cards/ProductCard";
-import { getAllProducts, getSearchedProduct } from "@/services/getProducts";
+import useProducts from "../hooks/useProductList";
 
 function Products() {
-  const [products, setProducts] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const [searching, setSearching] = useState(false);
+  const { products, inputValue, searching, handleInputChange, handleSearch } =
+    useProducts();
 
-  // Function to fetch products based on the search query
-  const fetchProducts = async (query = "") => {
-    setSearching(true);
-    try {
-      const data = query
-        ? await getSearchedProduct(query)
-        : await getAllProducts();
-      setProducts(data?.products || []);
-    } catch (error) {
-      console.error("Failed to fetch products:", error);
-    } finally {
-      setSearching(false);
-    }
-  };
-
-  // Fetch all products initially
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleSearch = () => {
-    fetchProducts(inputValue); // Fetch products based on the search query
-    setInputValue(""); // Clear the input field after search
-  };
-
-  console.log(inputValue )
   return (
     <>
       <div className="md:flex md:justify-between">
@@ -73,7 +42,7 @@ function Products() {
         <span className="loading loading-ring loading-lg"></span>
       ) : (
         <div className="md:grid md:grid-cols-4 gap-24 md:mx-auto md:mt-12 ml-[20px]">
-          {products.length ? (
+          {products ? (
             products
               .slice(0, 9)
               .map((prod, id) => <ProductCard key={id} products={prod} />)

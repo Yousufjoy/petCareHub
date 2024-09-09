@@ -1,46 +1,13 @@
 "use client";
-
 import ProductCard from "@/components/Cards/ProductCard";
-import { getAllProducts, getSearchedProduct } from "@/services/getProducts";
-import React, { useEffect, useState } from "react";
+import useProducts from "@/components/hooks/useProductList";
 
-const AllProductsPage = () => {
-  const [products, setProducts] = useState(null);
-  const [inputValue, setInputValue] = useState("");
-  const [searching, setSearching] = useState(false);
-
-  // Function to fetch products based on the search query
-  const fetchProducts = async (query = "") => {
-    setSearching(true);
-    try {
-      const data = query
-        ? await getSearchedProduct(query)
-        : await getAllProducts();
-      setProducts(data?.products || []);
-    } catch (error) {
-      console.error("Failed to fetch products:", error);
-    } finally {
-      setSearching(false);
-    }
-  };
-
-  // Fetch all products initially
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleSearch = () => {
-    fetchProducts(inputValue); // Fetch products based on the search query
-    setInputValue(""); // Clear the input field after search
-  };
-  console.log(inputValue)
+const ProductsSection = () => {
+  const { products, inputValue, searching, handleInputChange, handleSearch } =
+    useProducts();
 
   return (
-    <div>
+    <>
       <div className="md:flex md:justify-between">
         <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[80px]">
           Products
@@ -79,8 +46,8 @@ const AllProductsPage = () => {
       ) : (
         <span className="loading loading-ring loading-lg"></span>
       )}
-    </div>
+    </>
   );
 };
 
-export default AllProductsPage;
+export default ProductsSection;
