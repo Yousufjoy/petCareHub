@@ -8,6 +8,7 @@ const SignUpPage = () => {
       name: e.target.name.value,
       email: e.target.email.value,
       password: e.target.password.value,
+      image: e.target.image.value,
     };
 
     const resp = await fetch("http://localhost:3000/signup/api", {
@@ -80,6 +81,21 @@ const SignUpPage = () => {
                 placeholder="password"
                 className="input input-bordered"
                 required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="image"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Image URL
+              </label>
+              <input
+                type="url"
+                id="image"
+                name="image"
+                className="block w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="https://example.com/your-image.jpg"
               />
             </div>
             <div className="form-control mt-6">

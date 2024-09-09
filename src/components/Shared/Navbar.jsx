@@ -58,6 +58,23 @@ const Navbar = () => {
               </div>
             )}
             {session?.status === "authenticated" && (
+              <div className="flex gap-x-3">
+                <p className=" pt-2">
+                  Welcome back,
+                  <span className="font-bold">
+                    {session?.data?.user?.name}!
+                  </span>
+                </p>
+                <Image
+                  className=" rounded-full"
+                  src={session?.data?.user?.image}
+                  width={60}
+                  height={60}
+                  alt="No Image Found"
+                ></Image>
+              </div>
+            )}
+            {session?.status === "authenticated" && (
               <FiLogOut
                 className="text-3xl cursor-pointer text-[#FFB7B7]"
                 onClick={() => signOut()}
@@ -72,6 +89,7 @@ const Navbar = () => {
         </div>
       </nav>
       {/* Mobile Menu */}
+
       <div
         className={`${
           toggle ? "block" : "hidden"
@@ -129,7 +147,7 @@ const navItems = [
   },
   {
     title: "Adoption",
-    path: "",
+    path: "/adoption",
   },
 ];
 

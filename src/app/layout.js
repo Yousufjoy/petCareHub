@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AuthProvider>
         <body className={inter.className}>
-          <div className=" container mx-auto">
+          <div className="container mx-auto">
             <Navbar />
             {children}
           </div>

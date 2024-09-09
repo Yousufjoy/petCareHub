@@ -1,1 +1,0 @@
-fix the mobile nav like desktop nav, use sam approach

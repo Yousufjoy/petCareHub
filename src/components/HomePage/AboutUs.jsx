@@ -4,7 +4,7 @@ import React from "react";
 function AboutUs() {
   return (
     <div className=" md:flex">
-      <div className="md:mt-36 mt-20  md:relative md:w-1/3">
+      <div className="md:mt-36 mt-20 md:relative md:w-1/3  ">
         <Image
           className="" // Added z-10 here
           src="/assets/aboutDogImage.png"
