@@ -4,8 +4,15 @@ import ProductCard from "../Cards/ProductCard";
 import useProducts from "../hooks/useProductList";
 
 function Products() {
-  const { products, inputValue, searching, handleInputChange, handleSearch } =
-    useProducts();
+  const {
+    products,
+    inputValue,
+    searching,
+    handleInputChange,
+    handleSearch,
+    sortOrder,
+    handleSortChange,
+  } = useProducts();
 
   return (
     <>
@@ -28,12 +35,14 @@ function Products() {
           </div>
         </div>
         <div className="md:pt-[100px] md:mt-0 mt-[30px] md:ml-0 ml-[60px]">
-          <select className="select select-bordered w-full max-w-xs">
-            <option disabled selected>
-              Sort By Price
-            </option>
-            <option>High To Low</option>
-            <option>Low To High</option>
+          <select
+            className="select select-bordered w-full max-w-xs"
+            value={sortOrder}
+            onChange={handleSortChange} 
+          >
+            <option value="Sort By (Default)">Sort By (Default)</option>
+            <option value="High To Low">High To Low</option>
+            <option value="Low To High">Low To High</option>
           </select>
         </div>
       </div>

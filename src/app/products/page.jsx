@@ -3,8 +3,15 @@ import ProductCard from "@/components/Cards/ProductCard";
 import useProducts from "@/components/hooks/useProductList";
 
 const ProductsSection = () => {
-  const { products, inputValue, searching, handleInputChange, handleSearch } =
-    useProducts();
+  const {
+    products,
+    inputValue,
+    searching,
+    handleInputChange,
+    handleSearch,
+    sortOrder,
+    handleSortChange,
+  } = useProducts();
 
   return (
     <>
@@ -27,24 +34,28 @@ const ProductsSection = () => {
           </div>
         </div>
         <div className="md:pt-[100px] md:mt-0 mt-[30px] md:ml-0 ml-[60px]">
-          <select className="select select-bordered w-full max-w-xs">
-            <option disabled selected>
-              Sort By Price
-            </option>
-            <option>High To Low</option>
-            <option>Low To High</option>
+          <select
+            className="select select-bordered w-full max-w-xs"
+            value={sortOrder}
+            onChange={handleSortChange}
+          >
+            <option value="Sort By (Default)">Sort By (Default)</option>
+            <option value="High To Low">High To Low</option>
+            <option value="Low To High">Low To High</option>
           </select>
         </div>
       </div>
       <div className="border-t border-gray-300 mt-6"></div>
-      {products ? (
-        <div className="md:grid md:grid-cols-4 md:gap-24 md:mx-auto md:mt-12 ml-[20px]">
-          {products.map((prod, id) => (
-            <ProductCard key={id} products={prod}></ProductCard>
-          ))}
-        </div>
-      ) : (
+      {searching ? (
         <span className="loading loading-ring loading-lg"></span>
+      ) : (
+        <div className="md:grid md:grid-cols-4 gap-24 md:mx-auto md:mt-12 ml-[20px]">
+          {products ? (
+            products.map((prod, id) => <ProductCard key={id} products={prod} />)
+          ) : (
+            <p>No products found</p>
+          )}
+        </div>
       )}
     </>
   );

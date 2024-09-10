@@ -1,19 +1,24 @@
-'use client'
-import { useState, useEffect } from "react";
-import { getAllProducts, getSearchedProduct } from "@/services/getProducts";
+"use client";
 
-const useProducts = () => {
+import { useState, useEffect } from "react";
+import {
+  getProductCategory,
+  getSearchedProductCategory,
+} from "@/services/getProducts";
+
+const useCategoryList = () => {
   const [products, setProducts] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [searching, setSearching] = useState(false);
   const [sortOrder, setSortOrder] = useState("Sort By (Default)"); // Default sort order
 
-  const fetchProducts = async (query = "") => {
+  // Function to fetch products based on the search query and sort order
+  const fetchProducts = async (query = "", sortOrder = "") => {
     setSearching(true);
     try {
       const data = query
-        ? await getSearchedProduct(query, sortOrder !== "Sort By (Default)" ? sortOrder : null)
-        : await getAllProducts(sortOrder !== "Sort By (Default)" ? sortOrder : null);
+        ? await getSearchedProductCategory(query, sortOrder)
+        : await getProductCategory(sortOrder);
       setProducts(data?.products || []);
     } catch (error) {
       console.error("Failed to fetch products:", error);
@@ -22,18 +27,17 @@ const useProducts = () => {
     }
   };
 
-  // Fetch all products initially
+  // Fetch products when sortOrder or search input changes
   useEffect(() => {
-    fetchProducts();
-  }, [sortOrder]); // Trigger fetching when sortOrder changes
+    fetchProducts(inputValue, sortOrder);
+  }, [inputValue, sortOrder]); // Dependencies include inputValue and sortOrder
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleSearch = () => {
-    fetchProducts(inputValue); 
-    setInputValue(""); 
+    fetchProducts(inputValue, sortOrder);
   };
 
   const handleSortChange = (event) => {
@@ -51,4 +55,4 @@ const useProducts = () => {
   };
 };
 
-export default useProducts;
+export default useCategoryList;
