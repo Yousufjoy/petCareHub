@@ -1,5 +1,7 @@
 "use client";
+import SocialSignin from "@/components/Shared/SocialSignin";
 import Image from "next/image";
+
 
 const SignUpPage = () => {
   const handleSignUp = async (e) => {
@@ -98,6 +100,7 @@ const SignUpPage = () => {
                 placeholder="https://example.com/your-image.jpg"
               />
             </div>
+            <SocialSignin />
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign Up</button>
             </div>

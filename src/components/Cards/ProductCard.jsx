@@ -1,8 +1,10 @@
+
 import Link from "next/link";
 import React from "react";
 
 function ProductCard({ products }) {
   const { category, title, price, image, _id, description } = products;
+
 
   return (
     <div>

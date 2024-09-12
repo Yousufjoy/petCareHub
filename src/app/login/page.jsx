@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { signIn, useSession } from "next-auth/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import SocialSignin from "@/components/Shared/SocialSignin";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -72,6 +73,7 @@ const LoginPage = () => {
                 required
               />
             </div>
+            <SocialSignin/>
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
