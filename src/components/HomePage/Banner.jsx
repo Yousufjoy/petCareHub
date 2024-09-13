@@ -35,7 +35,7 @@ function Banner() {
           reptiles, and fish, for purchase.
         </p>
         <div className="mt-5">
-          <Link href="/login" className="btn btn-primary">
+          <Link href="/products" className="btn btn-primary">
             Get Started
           </Link>
         </div>

@@ -68,12 +68,13 @@ const Navbar = () => {
                 <Image
                   className=" rounded-full"
                   src={session?.data?.user?.image}
-                  width={60}
-                  height={60}
+                  width={40}
+                  height={40}
                   alt="No Image Found"
                 ></Image>
               </div>
             )}
+
             {session?.status === "authenticated" && (
               <FiLogOut
                 className="text-3xl cursor-pointer text-[#FFB7B7]"
@@ -137,10 +138,7 @@ const navItems = [
     title: "Home",
     path: "/",
   },
-  {
-    title: "Blog",
-    path: "",
-  },
+
   {
     title: "Products",
     path: "/products",

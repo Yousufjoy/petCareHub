@@ -1,11 +1,12 @@
 import { getProductDetails } from "@/services/getProducts";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const ProductDetails = async ({ params }) => {
   const details = await getProductDetails(params.id);
 
-  const { category, title, description, price, image, brand } =
+  const { category, title, description, price, image, brand, _id } =
     details?.product;
 
   return (
@@ -31,7 +32,9 @@ const ProductDetails = async ({ params }) => {
           <span className=" font-bold"> {title}</span> {description}
         </p>
         <div className="py-4">
-          <button className="btn btn-active btn-ghost">Add to cart</button>
+          <Link href={`/order/${_id}`}>
+            <button className="btn btn-active btn-ghost">Order Now</button>
+          </Link>
         </div>
       </div>
     </div>
