@@ -46,7 +46,7 @@ const OrderPage = ({ params }) => {
       });
       if (response.ok) {
         const result = await response.json();
-        console.log(result.message);
+
         // Reset the form
         if (formRef.current) {
           formRef.current.reset();
@@ -136,6 +136,7 @@ const OrderPage = ({ params }) => {
                   </label>
                   <input
                     defaultValue={data?.user?.email}
+                    readOnly
                     type="email"
                     name="email"
                     className="input input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"

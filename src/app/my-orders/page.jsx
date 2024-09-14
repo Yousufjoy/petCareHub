@@ -51,27 +51,27 @@ const MyOrders = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">My Orders</h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">My Orders</h1>
 
       {orders.length === 0 ? (
-        <p>No orders found.</p>
+        <p className="text-center text-gray-600">No orders found.</p>
       ) : (
         <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-200">
+          <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
             <thead>
-              <tr>
-                <th className="px-6 py-3 border-b">Order Title</th>
-                <th className="px-6 py-3 border-b">Price</th>
-                <th className="px-6 py-3 border-b">Date</th>
-                <th className="px-6 py-3 border-b">Address</th>
-                <th className="px-6 py-3 border-b">Phone</th>
-                <th className="px-6 py-3 border-b">Actions</th>
+              <tr className="bg-gray-100">
+                <th className="px-6 py-3 border-b text-left">Order Title</th>
+                <th className="px-6 py-3 border-b text-left">Price</th>
+                <th className="px-6 py-3 border-b text-left">Date</th>
+                <th className="px-6 py-3 border-b text-left">Address</th>
+                <th className="px-6 py-3 border-b text-left">Phone</th>
+                <th className="px-6 py-3 border-b text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {orders?.map(
                 ({ _id, orderTitle, price, date, address, phone }) => (
-                  <tr key={_id} className="border-b">
+                  <tr key={_id} className="border-b hover:bg-gray-50">
                     <td className="px-6 py-4">{orderTitle}</td>
                     <td className="px-6 py-4">${price.toFixed(2)}</td>
                     <td className="px-6 py-4">{date}</td>
