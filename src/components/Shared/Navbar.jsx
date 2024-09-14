@@ -147,6 +147,10 @@ const navItems = [
     title: "Adoption",
     path: "/adoption",
   },
+  {
+    title: "My Orders",
+    path: "/my-orders",
+  },
 ];
 
 export default Navbar;

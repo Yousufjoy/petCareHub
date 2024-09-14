@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+
 import React from "react";
 import { signIn, useSession } from "next-auth/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -73,11 +73,13 @@ const LoginPage = () => {
                 required
               />
             </div>
-            <SocialSignin/>
+
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
           </form>
+
+          <SocialSignin />
         </div>
       </div>
     </div>

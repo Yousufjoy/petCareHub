@@ -13,14 +13,11 @@ const handler = NextAuth({
     rolling: false,
   },
   providers: [
-    // What credentials user give to login in
     CredentialsProvider({
       credentials: {
         email: {},
         password: {},
       },
-
-      //   Purpose: The authorize function is used to verify the credentials provided by the user during login.
       async authorize(credentials) {
         const { email, password } = credentials;
         if (!email || !password) {
@@ -46,12 +43,37 @@ const handler = NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     }),
   ],
-  // We are adding pages because before we used the login page that nextjs provides by default but now we are making or using or own custom login page
   pages: {
     signIn: "/login",
   },
-  //next auth default function gives which we can manipulate as we wish
-  callbacks: {},
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      if (account.provider === "google") {
+        const db = await connectDB();
+        const userCollection = db.collection("users");
+
+        // Check if the user already exists
+        const existingUser = await userCollection.findOne({
+          email: user.email,
+        });
+
+        if (!existingUser) {
+          // If the user does not exist, insert the user into the database
+          await userCollection.insertOne({
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            provider: account.provider,
+          });
+        }
+      }
+      return true;
+    },
+    async session({ session, token, user }) {
+    
+      return session;
+    },
+  },
 });
 
 export { handler as GET, handler as POST };

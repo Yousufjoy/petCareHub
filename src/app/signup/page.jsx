@@ -1,7 +1,7 @@
 "use client";
 import SocialSignin from "@/components/Shared/SocialSignin";
 import Image from "next/image";
-
+import Swal from "sweetalert2";
 
 const SignUpPage = () => {
   const handleSignUp = async (e) => {
@@ -21,6 +21,13 @@ const SignUpPage = () => {
       },
     });
     if (resp.status === 200) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "Registration Successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       e.target.reset();
     }
   };
@@ -100,11 +107,12 @@ const SignUpPage = () => {
                 placeholder="https://example.com/your-image.jpg"
               />
             </div>
-            <SocialSignin />
+
             <div className="form-control mt-6">
               <button className="btn btn-primary">Sign Up</button>
             </div>
           </form>
+          <SocialSignin />
         </div>
       </div>
     </div>
