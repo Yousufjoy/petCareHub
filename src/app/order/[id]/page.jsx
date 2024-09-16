@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import Swal from "sweetalert2";
+import { v4 as uuidv4 } from "uuid";
 
 const OrderPage = ({ params }) => {
   const [product, setProduct] = useState(false);
@@ -33,6 +34,9 @@ const OrderPage = ({ params }) => {
       orderTitle: title,
       orderID: _id,
       price: price,
+      paymentMethod: event.target.paymentMethod.value, // Get the selected payment method
+      status: "pending",
+      paymentId: uuidv4(), // Generate a new transaction ID using uuid
     };
 
     try {
@@ -51,6 +55,26 @@ const OrderPage = ({ params }) => {
         if (formRef.current) {
           formRef.current.reset();
         }
+
+        // Handle the selected payment method
+        if (newOrder.paymentMethod === "online") {
+          // Redirect to the payment URL
+          if (result.paymentUrl) {
+            window.location.href = result.paymentUrl;
+          } else {
+            console.error("Payment URL is missing.");
+          }
+        } else {
+          // Handle Cash on Delivery
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title:
+              "Your order will be delivered and you can pay cash on delivery.",
+            showConfirmButton: false,
+            timer: 3000,
+          });
+        }
       } else {
         console.error("Order submission failed.");
       }
@@ -58,7 +82,7 @@ const OrderPage = ({ params }) => {
       Swal.fire({
         position: "top-center",
         icon: "error",
-        title: { error },
+        title: error.message, // Display the error message
         showConfirmButton: false,
         timer: 1500,
       });
@@ -179,6 +203,32 @@ const OrderPage = ({ params }) => {
                     placeholder="Your Address"
                     className="input input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
                   />
+                </div>
+
+                <div className="form-control">
+                  <label className="label font-medium text-gray-700">
+                    Payment Method
+                  </label>
+                  <div className="flex space-x-4">
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="cash"
+                        className="radio"
+                      />
+                      <span>Cash on Delivery</span>
+                    </label>
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="online"
+                        className="radio"
+                      />
+                      <span>Online Payment</span>
+                    </label>
+                  </div>
                 </div>
               </div>
 
