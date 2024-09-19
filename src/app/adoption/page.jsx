@@ -2,7 +2,7 @@ import React from 'react'
 
 const AdoptionPage = () => {
   return (
-    <div>Under Construction</div>
+    <div>Working on checkout</div>
   )
 }
 
