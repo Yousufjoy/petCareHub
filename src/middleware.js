@@ -11,5 +11,5 @@ export const middleware = async (request) => {
 };
 
 export const config = {
-  matcher: ["/my-orders", "/payment",],
+  matcher: ["/my-orders", "/payment", "/order/:id*"],  // Match dynamic order routes
 };

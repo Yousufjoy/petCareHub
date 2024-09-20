@@ -59,12 +59,6 @@ const Navbar = () => {
             )}
             {session?.status === "authenticated" && (
               <div className="flex gap-x-3">
-                <p className=" pt-2">
-                  Welcome back,
-                  <span className="font-bold">
-                    {session?.data?.user?.name}!
-                  </span>
-                </p>
                 <Image
                   className=" rounded-full"
                   src={session?.data?.user?.image}
@@ -72,6 +66,9 @@ const Navbar = () => {
                   height={40}
                   alt="No Image Found"
                 ></Image>
+                <p className=" pt-2">
+                  <span className="font-bold">{session?.data?.user?.name}</span>
+                </p>
               </div>
             )}
 
