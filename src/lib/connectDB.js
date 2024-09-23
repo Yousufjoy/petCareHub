@@ -3,7 +3,7 @@ let db;
 export const connectDB = async () => {
   if (db) return db;
   try {
-    const uri = process.env.NEXT_PUBLIC_MONGODB_URI
+    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.b9hatji.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
     const client = new MongoClient(uri, {
       serverApi: {
         version: ServerApiVersion.v1,
@@ -11,9 +11,9 @@ export const connectDB = async () => {
         deprecationErrors: true,
       },
     });
-    db = client.db('petCare-hub')
+    db = client.db("petCare-hub");
     return db;
   } catch (error) {
-    console.log({error});
+    console.log({ error });
   }
 };

@@ -66,7 +66,7 @@ const UpdatePage = ({ params }) => {
                     defaultValue={data?.user?.name}
                     type="text"
                     name="name"
-                    className="input text-gray-300 input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
+                    className="input  input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
                   />
                 </div>
 
@@ -76,6 +76,7 @@ const UpdatePage = ({ params }) => {
                   </label>
                   <input
                     defaultValue={new Date().toISOString().split("T")[0]}
+                    readOnly
                     type="date"
                     name="date"
                     className="input text-gray-300 input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
@@ -88,6 +89,7 @@ const UpdatePage = ({ params }) => {
                   </label>
                   <input
                     defaultValue={data?.user?.email}
+                    readOnly
                     type="email"
                     name="email"
                     className="input text-gray-300 input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
@@ -117,7 +119,7 @@ const UpdatePage = ({ params }) => {
                     type="text"
                     name="phone"
                     placeholder="Your Phone"
-                    className="input text-gray-300 input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
+                    className="input input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
                   />
                 </div>
 
@@ -130,7 +132,7 @@ const UpdatePage = ({ params }) => {
                     type="text"
                     name="address"
                     placeholder="Your Address"
-                    className="input text-gray-300 input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
+                    className="input  input-bordered w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-300"
                   />
                 </div>
               </div>
