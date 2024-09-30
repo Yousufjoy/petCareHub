@@ -1,15 +1,36 @@
-import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
 export const middleware = async (request) => {
-  const token = cookies(request).get("next-auth.session-token");
+  // Get the token using next-auth's getToken function
+  const token = await getToken({
+    req: request,
+    secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+  });
 
+  // Redirect to sign-in if token is not present
   if (!token) {
-    return NextResponse.redirect(new URL("/api/auth/signin", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
+
+  // Handle admin dashboard access
+  if (request.nextUrl.pathname === "/admin-dashboard") {
+    if (token.role === "admin") {
+      return NextResponse.next(); // Allow access to admin dashboard
+    } else {
+      return NextResponse.redirect(new URL("/", request.url)); // Redirect non-admins to home
+    }
+  }
+
+  // Allow access to other protected routes
   return NextResponse.next();
 };
 
 export const config = {
-  matcher: ["/my-orders", "/payment", "/order/:id*"],  // Match dynamic order routes
+  matcher: [
+    "/my-orders",
+    "/payment",
+    "/order/:id*", // Match dynamic order routes
+    "/admin-dashboard", // Match the admin dashboard route
+  ],
 };

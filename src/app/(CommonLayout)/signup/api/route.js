@@ -22,10 +22,19 @@ export const POST = async (request) => {
     // Hashing the user's password before storing it in the database
     const hashedPassword = await bcrypt.hash(newUser.password, 14);
 
-    // Inserting the user into the database with the hashed password
+    // Assign role based on specific email
+    let role = "user"; // default role
+
+    // Check if the email is the one you want to assign admin role to
+    if (newUser.email === "admin@gmail.com") {
+      role = "admin"; // set the role as admin for the specific email
+    }
+
+    // Inserting the user into the database with the hashed password and role
     const resp = await userCollection.insertOne({
       ...newUser,
       password: hashedPassword,
+      role,  // Assign the determined role
     });
 
     return NextResponse.json({ message: "User Created" }, { status: 200 });

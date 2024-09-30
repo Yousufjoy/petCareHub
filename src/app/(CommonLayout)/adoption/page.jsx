@@ -32,7 +32,7 @@ const AdoptionPage = () => {
       <Categories />
       <div className="md:flex md:justify-between ">
         <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[80px]">
-          Adopt From Us
+          Adopt Me!!!
         </h1>
 
         <div className="md:pt-[100px]">

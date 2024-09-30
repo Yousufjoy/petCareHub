@@ -4,6 +4,7 @@ import AboutUs from "./AboutUs";
 import Products from "./Products";
 import CategoryProducts from "./CategoryProducts";
 import ContactUs from "./ContactUs";
+import { useSession } from "next-auth/react";
 
 function HomePage() {
   return (
@@ -11,6 +12,7 @@ function HomePage() {
       <Banner />
       <AboutUs />
       <CategoryProducts />
+
       <Products />
       <ContactUs />
     </div>

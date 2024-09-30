@@ -7,7 +7,9 @@ export default function AdminDashboardLayout({ children }) {
   return (
     <>
       <div>
+        {/* Same/Fixed Sidebar */}
         Admin Dashboard SideBar
+        {/* Dynamic Content */}
         {children}
       </div>
     </>

@@ -20,9 +20,22 @@ const LoginPage = () => {
     const resp = await signIn("credentials", {
       email,
       password,
-      redirect: true,
-      callbackUrl: path ? path : "/",
+      redirect: false, // Prevent automatic redirect
     });
+
+    if (resp?.ok) {
+      // Check user role after successful login
+      const session = await fetch("/api/auth/session").then((res) =>
+        res.json()
+      );
+      if (session?.user?.role === "admin") {
+        router.push("/admin-dashboard"); // Redirect to admin dashboard
+      } else {
+        router.push(path ? path : "/"); // Redirect to homepage or the intended path
+      }
+    } else {
+      console.error("Failed to login");
+    }
   };
 
   return (
