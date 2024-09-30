@@ -1,6 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Shared/Navbar";
+
 import Footer from "@/components/Shared/Footer";
 import AuthProvider from "@/services/AuthProvider";
 
@@ -16,10 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <AuthProvider>
         <body className={inter.className}>
-          <div className="container mx-auto">
-            <Navbar />
-            {children}
-          </div>
+          {children}
           <Footer />
         </body>
       </AuthProvider>
