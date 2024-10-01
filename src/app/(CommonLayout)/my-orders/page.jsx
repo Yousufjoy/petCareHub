@@ -49,6 +49,16 @@ const MyOrders = () => {
     }
   }, [session]);
 
+  const formatPrice = (price) => {
+    if (typeof price === "number") {
+      return price.toFixed(2);
+    } else if (typeof price === "string") {
+      const numPrice = parseFloat(price);
+      return isNaN(numPrice) ? "N/A" : numPrice.toFixed(2);
+    }
+    return "N/A";
+  };
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6 text-center">My Orders</h1>
@@ -73,7 +83,7 @@ const MyOrders = () => {
                 ({ _id, orderTitle, price, date, address, phone }) => (
                   <tr key={_id} className="border-b hover:bg-gray-50">
                     <td className="px-6 py-4">{orderTitle}</td>
-                    <td className="px-6 py-4">${price.toFixed(2)}</td>
+                    <td className="px-6 py-4">${formatPrice(price)}</td>
                     <td className="px-6 py-4">{date}</td>
                     <td className="px-6 py-4">{address}</td>
                     <td className="px-6 py-4">{phone}</td>
