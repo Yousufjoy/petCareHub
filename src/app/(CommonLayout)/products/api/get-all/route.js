@@ -32,7 +32,6 @@ export const GET = async (req) => {
 
     return Response.json({ products });
   } catch (error) {
-    console.log(error);
     return new Response("Failed to fetch products", { status: 500 });
   }
 };

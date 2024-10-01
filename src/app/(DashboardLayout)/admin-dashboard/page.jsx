@@ -1,7 +1,11 @@
-import React from "react";
+import DashboardContents from "../components/DashboardContents";
 
-const AdminiDashboard = () => {
-  return <div>AdminiDashboard</div>;
+const AdminDashboard = () => {
+  return (
+    <>
+      <DashboardContents />
+    </>
+  );
 };
 
-export default AdminiDashboard;
+export default AdminDashboard;
