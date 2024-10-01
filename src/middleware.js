@@ -31,6 +31,6 @@ export const config = {
     "/my-orders",
     "/payment",
     "/order/:id*", // Match dynamic order routes
-    "/admin-dashboard", // Match the admin dashboard route
+    "/admin-dashboard/:id*", // Match the admin dashboard route
   ],
 };

@@ -17,3 +17,16 @@ export const postAdoption = async (petDetailsForm) => {
     },
   });
 };
+
+export const createOrder = async (createdOrder) => {
+  return await fetch(
+    "http://localhost:3000/admin-dashboard/addproducts/api/create-new-order",
+    {
+      method: "POST",
+      body: JSON.stringify(createdOrder),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};

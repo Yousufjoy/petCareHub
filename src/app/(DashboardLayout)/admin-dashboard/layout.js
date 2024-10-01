@@ -8,7 +8,9 @@ export const metadata = {
 export default function AdminDashboardLayout({ children }) {
   return (
     <>
-      <AdminLayout>{children}</AdminLayout>
+      <div className=" max-w-[2600px] mx-auto">
+        <AdminLayout>{children}</AdminLayout>
+      </div>
     </>
   );
 }
