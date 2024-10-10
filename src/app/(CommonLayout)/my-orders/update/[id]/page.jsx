@@ -48,7 +48,7 @@ const UpdatePage = ({ params }) => {
   }, [params]);
 
   return (
-    <div>
+    <>
       <div className="bg-gray-100 py-10">
         <div className="container mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12">
@@ -148,7 +148,7 @@ const UpdatePage = ({ params }) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

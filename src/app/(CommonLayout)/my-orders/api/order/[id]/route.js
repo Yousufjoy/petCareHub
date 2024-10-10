@@ -2,6 +2,8 @@ import { connectDB } from "@/lib/connectDB";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
+// Patch and delete functionality are being handled here
+
 export const DELETE = async (request, { params }) => {
   const db = await connectDB();
   const orderCollection = db.collection("orders");
