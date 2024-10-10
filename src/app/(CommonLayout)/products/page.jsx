@@ -1,17 +1,42 @@
 "use client";
+import { getSearchedProduct } from "@/services/getProducts";
+import { useEffect, useState } from "react";
 import ProductCard from "@/components/Cards/ProductCard";
-import useProducts from "@/components/hooks/useProductList";
 
 const ProductsSection = () => {
-  const {
-    products,
-    inputValue,
-    searching,
-    handleInputChange,
-    handleSearch,
-    sortOrder,
-    handleSortChange,
-  } = useProducts();
+  const [products, setProducts] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("Sort By (Default)");
+  const [searching, setSearching] = useState(false);
+
+  // Fetch initial data
+  useEffect(() => {
+    const fetchData = async () => {
+      setSearching(true);
+      const allData = await getSearchedProduct(""); // Fetch all products initially
+      setProducts(allData.products);
+      setSearching(false);
+    };
+    fetchData();
+  }, []);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setSearching(true);
+    const searchData = await getSearchedProduct(searchTerm, sortOrder); // Pass the sortOrder while searching
+    setProducts(searchData.products);
+    setSearching(false);
+  };
+
+  const handleSortChange = async (e) => {
+    const selectedSort = e.target.value;
+    setSortOrder(selectedSort);
+
+    setSearching(true);
+    const sortedData = await getSearchedProduct(searchTerm, selectedSort); // Fetch with sorting
+    setProducts(sortedData.products);
+    setSearching(false);
+  };
 
   return (
     <>
@@ -23,8 +48,8 @@ const ProductsSection = () => {
           <div className="md:pt-[100px]">
             <input
               type="text"
-              value={inputValue}
-              onChange={handleInputChange}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search Products"
               className="input input-bordered w-full max-w-xs"
             />
@@ -49,7 +74,6 @@ const ProductsSection = () => {
       {searching ? (
         <span className="loading loading-ring loading-lg"></span>
       ) : (
-       
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-24 md:mx-auto md:mt-12 ml-[20px]">
           {products ? (
             products.map((prod, id) => <ProductCard key={id} products={prod} />)

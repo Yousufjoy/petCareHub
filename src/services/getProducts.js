@@ -27,9 +27,9 @@ export const getProductCategory = async (category, sortOrder = "") => {
   return product;
 };
 
-export const getSearchedProduct = async (inputValue) => {
+export const getSearchedProduct = async (inputValue, sortOrder = "Sort By (Default)") => {
   const res = await fetch(
-    `http://localhost:3000/products/api/get-all?q=${inputValue}`
+    `http://localhost:3000/products/api/get-all?q=${inputValue}&sort=${sortOrder}`
   );
   const searchedProducts = await res.json();
   return searchedProducts;

@@ -103,7 +103,7 @@ const AdminLayout = ({ children }) => {
                 href="/admin-dashboard/orders"
                 className="block p-2 hover:bg-gray-700 rounded"
               >
-                Orders
+                Order history
               </Link>
             </li>
             <li>

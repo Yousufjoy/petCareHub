@@ -14,6 +14,7 @@ function AdoptionForm() {
       location: e.target.location.value,
       gender: e.target.gender.value,
       age: e.target.age.value,
+      phoneNumber: e.target.phoneNumber.value,
       description: e.target.description.value,
     };
     try {
@@ -124,6 +125,18 @@ function AdoptionForm() {
           />
         </div>
 
+        {/* Owner Details */}
+        <div>
+          <label className="block text-lg font-semibold text-black mb-2">
+            Owners Contact No
+          </label>
+          <input
+            type="number"
+            name="phoneNumber"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#FF6B6B] focus:border-[#FF6B6B] bg-white"
+            placeholder="Phone Number"
+          />
+        </div>
         {/* Description */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">

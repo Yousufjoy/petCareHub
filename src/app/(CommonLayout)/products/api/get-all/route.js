@@ -11,14 +11,16 @@ export const GET = async (req) => {
 
     let sortOptions = {};
 
+    // Sorting based on price
     if (sortOrder === "High To Low") {
-      sortOptions.price = -1; // Descending order
+      sortOptions.price = -1; // Descending order (High to Low)
     } else if (sortOrder === "Low To High") {
-      sortOptions.price = 1; // Ascending order
+      sortOptions.price = 1; // Ascending order (Low to High)
     }
 
     let products;
 
+    // Search and sorting together
     if (searchQuery) {
       products = await productsCollection
         .find({
@@ -27,10 +29,11 @@ export const GET = async (req) => {
         .sort(sortOptions)
         .toArray();
     } else {
+      // If no search query, return all products with sorting
       products = await productsCollection.find().sort(sortOptions).toArray();
     }
 
-    return Response.json({ products });
+    return new Response(JSON.stringify({ products }), { status: 200 });
   } catch (error) {
     return new Response("Failed to fetch products", { status: 500 });
   }

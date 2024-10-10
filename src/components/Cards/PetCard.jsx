@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PetCard = ({ pet }) => {
+
   return (
     <Link href={`adoption/${pet._id}`}>
       <div className="max-w-sm rounded-3xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
@@ -30,8 +31,9 @@ const PetCard = ({ pet }) => {
           </p>
           <p className="text-gray-700 text-base line-clamp-3">
             <span className="font-semibold text-blue-600">About:</span>{" "}
-            {pet.description}
+            {pet.description} ss
           </p>
+         
         </div>
         <div className="px-6 pt-2 pb-4 bg-white">
           <div className="flex flex-wrap gap-2">

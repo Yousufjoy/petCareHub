@@ -9,7 +9,7 @@ const DetailsPage = async ({ params }) => {
     return <div className="text-center mt-10">Failed to load pet details.</div>;
   }
 
-  const { _id, image, petName, location, gender, age, description } =
+  const { _id, image, petName, location, gender, age, description, phoneNumber } =
     details.pet;
 
   return (
@@ -20,7 +20,7 @@ const DetailsPage = async ({ params }) => {
 
       <div className="flex flex-col lg:flex-row items-start justify-between gap-12">
         {/* Pet Image */}
-        <div className="lg:w-1/2 relative">
+        <div className="lg:w-1/2 w-full relative">
           <div className="relative h-96 w-full overflow-hidden rounded-3xl shadow-2xl">
             <Image
               src={image || "/default-pet-image.jpg"}
@@ -38,7 +38,7 @@ const DetailsPage = async ({ params }) => {
         </div>
 
         {/* Pet Information */}
-        <div className="lg:w-1/2 bg-white p-8 rounded-3xl shadow-xl">
+        <div className="lg:w-1/2 w-full bg-white p-8 rounded-3xl shadow-xl">
           <h2 className="text-3xl font-bold mb-6 text-orange-600">
             Pet Details
           </h2>
@@ -58,6 +58,10 @@ const DetailsPage = async ({ params }) => {
             <p className="text-xl">
               <span className="font-semibold text-blue-500">Description:</span>{" "}
               {description || "No description available."}
+            </p>
+            <p className="text-xl">
+              <span className="font-semibold text-yellow-500">Contact No:</span>{" "}
+              {phoneNumber || "No Phone Number available."}
             </p>
           </div>
 

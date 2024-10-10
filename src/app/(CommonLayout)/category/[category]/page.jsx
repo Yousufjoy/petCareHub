@@ -1,47 +1,53 @@
+// Client-side Component (e.g., pages/category/[category].js)
 "use client";
 
 import ProductCard from "@/components/Cards/ProductCard";
-import useCategoryList from "@/components/hooks/useCategoryList";
 import React, { useEffect, useState } from "react";
 
 const CategoryPage = ({ params }) => {
   const { category } = params;
-  const {
-    inputValue,
-    searching,
-    handleInputChange,
-    handleSearch,
-    sortOrder,
-    handleSortChange,
-  } = useCategoryList();
-  const [products, setProducts] = useState(null); // Initialize as null for proper loading state
+  const [products, setProducts] = useState(null);
+  const [inputValue, setInputValue] = useState("");
+  const [sortOrder, setSortOrder] = useState("Sort By (Default)");
+  const [searching, setSearching] = useState(false);
 
   const fetchCategoryData = async (searchQuery = "") => {
+    setSearching(true);
     try {
-      const response = await fetch(
-        `http://localhost:3000/category/api/${category}${
-          searchQuery ? `?q=${searchQuery}` : ""
-        }`
-      );
+      const url = new URL(`http://localhost:3000/category/api/${category}`);
+      if (searchQuery) {
+        url.searchParams.append("q", searchQuery);
+      }
+      if (sortOrder !== "Sort By (Default)") {
+        url.searchParams.append("sort", sortOrder);
+      }
+      const response = await fetch(url.toString());
       const data = await response.json();
       setProducts(data.products);
     } catch (error) {
       console.error("Error fetching category data:", error);
+    } finally {
+      setSearching(false);
     }
   };
 
-  // Fetch products when the category changes or a search is performed
   useEffect(() => {
     if (category) {
-      fetchCategoryData(inputValue); // Include search query if it exists
+      fetchCategoryData(inputValue);
     }
-  }, [category]);
+  }, [category, sortOrder]);
 
   const handleSearchClick = () => {
-    handleSearch(); // Call the search handler from the hook
-    fetchCategoryData(inputValue); // Fetch products based on the search query
+    fetchCategoryData(inputValue);
   };
 
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleSortChange = (e) => {
+    setSortOrder(e.target.value);
+  };
   return (
     <>
       <div className="md:flex md:justify-between ">
@@ -49,8 +55,8 @@ const CategoryPage = ({ params }) => {
           Products
         </h1>
 
-        <div className="flex md:mr-3 md:mt-0 mt-[50px] md:ml-0 ml-[60px]  ">
-          <div className="md:pt-[100px]">
+        <div className="flex md:mr-3 md:mt-0 mt-[50px] md:ml-0 ml-[60px] ">
+          <div className="md:pt-[100px] ">
             <input
               type="text"
               value={inputValue}
@@ -61,7 +67,7 @@ const CategoryPage = ({ params }) => {
           </div>
           <div
             onClick={handleSearchClick}
-            className="md:pt-[100px] md:mr-[440px]"
+            className="md:pt-[100px] md:mr-[30px]"
           >
             <button className="btn btn-primary">Search</button>
           </div>
