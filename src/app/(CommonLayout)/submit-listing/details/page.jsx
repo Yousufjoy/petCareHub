@@ -7,9 +7,27 @@ import Swal from "sweetalert2";
 function AdoptionForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // Access the uploaded image from the form
+    const imageFile = e.target.image.files[0];
+
+    // Create FormData and append the image file to it
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    // Upload the image to imgbb
+    const response = await fetch(
+      `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const data = await response.json();
+    const imageUrl = data.data.display_url;
     const petDetailsForm = {
       category: e.target.category.value,
-      image: e.target.image.value,
+      image: imageUrl, // use the uploaded image URL
       petName: e.target.petName.value,
       location: e.target.location.value,
       gender: e.target.gender.value,
@@ -60,13 +78,14 @@ function AdoptionForm() {
         {/* Images */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">
-            Pet Images (Required)
+            Pet Image (Required)
           </label>
           <input
-            type="url"
+            id="image"
             name="image"
+            type="file"
+            accept="image/*"
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#FF6B6B] focus:border-[#FF6B6B] bg-white"
-            placeholder="URL"
             required
           />
         </div>
@@ -128,15 +147,17 @@ function AdoptionForm() {
         {/* Owner Details */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">
-            Owners Contact No
+            Owner's Contact No
           </label>
           <input
-            type="number"
+            type="tel" // Use 'tel' for better control of phone number inputs
             name="phoneNumber"
             className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#FF6B6B] focus:border-[#FF6B6B] bg-white"
             placeholder="Phone Number"
+            required // Make the field required
           />
         </div>
+
         {/* Description */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">
