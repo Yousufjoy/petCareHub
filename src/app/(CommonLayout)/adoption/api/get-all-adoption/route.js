@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
+import { NextResponse } from "next/server";
 
 export const GET = async (request) => {
   const db = await connectDB();
@@ -21,12 +22,12 @@ export const GET = async (request) => {
     }
 
     // Return the response
-    return new Response(JSON.stringify(allAdoption), {
+    return new NextResponse(JSON.stringify(allAdoption), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("Error fetching adoptions:", error);
-    return new Response("Failed to fetch adoptions", { status: 500 });
+    return new NextResponse("Failed to fetch adoptions", { status: 500 });
   }
 };

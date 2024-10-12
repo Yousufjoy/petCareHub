@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
+import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
   const newOrder = await request.json();
@@ -53,7 +54,10 @@ export const POST = async (request) => {
     // console.log("Parsed Response:", responseData); // Log the parsed response
   } else {
     console.error("Error:", response.status, response.statusText);
-    return Response.json({ message: "Something Went Wrong" }, { status: 400 });
+    return NextResponse.json(
+      { message: "Something Went Wrong" },
+      { status: 400 }
+    );
   }
 
   const db = await connectDB();
@@ -63,7 +67,7 @@ export const POST = async (request) => {
     const res = await orderCollection.insertOne(newOrder);
 
     if (res) {
-      return Response.json(
+      return NextResponse.json(
         {
           message: "Booked Successfully",
           paymentUrl: responseData.GatewayPageURL,
@@ -72,6 +76,9 @@ export const POST = async (request) => {
       );
     }
   } catch (error) {
-    return Response.json({ message: "Something Went Wrong" }, { status: 400 });
+    return NextResponse.json(
+      { message: "Something Went Wrong" },
+      { status: 400 }
+    );
   }
 };

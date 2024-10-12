@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamice";
 import HomePage from "@/components/HomePage/HomePage";
 
 export default function Home() {

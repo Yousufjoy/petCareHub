@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
@@ -37,7 +38,7 @@ export async function POST(request) {
       throw new Error("Order not found or already updated");
     }
 
-    return new Response(null, {
+    return new NextResponse(null, {
       status: 302, // Found (redirection)
       headers: {
         Location: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/fail`,
@@ -45,7 +46,7 @@ export async function POST(request) {
     });
   } catch (error) {
     console.error("Error updating order status:", error);
-    return new Response(JSON.stringify({ message: error.message }), {
+    return new NextResponse(JSON.stringify({ message: error.message }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
     });

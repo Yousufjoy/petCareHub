@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
+import { NextResponse } from "next/server";
 
 export const GET = async (req) => {
   const db = await connectDB();
@@ -33,8 +34,8 @@ export const GET = async (req) => {
       products = await productsCollection.find().sort(sortOptions).toArray();
     }
 
-    return new Response(JSON.stringify({ products }), { status: 200 });
+    return new NextResponse(JSON.stringify({ products }), { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch products", { status: 500 });
+    return new NextResponse("Failed to fetch products", { status: 500 });
   }
 };

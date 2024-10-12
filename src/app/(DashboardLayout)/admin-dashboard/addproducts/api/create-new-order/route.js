@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
@@ -12,7 +13,7 @@ export async function POST(req) {
     const createdNewProduct = await createProduct.insertOne(createdOrder);
 
     // Return a success response
-    return new Response(
+    return new NextResponse(
       JSON.stringify({ success: true, data: createdNewProduct }),
       {
         status: 201,
@@ -23,7 +24,7 @@ export async function POST(req) {
     console.error("Error creating product:", error);
 
     // Return an error response
-    return new Response(
+    return new NextResponse(
       JSON.stringify({ success: false, error: error.message }),
       {
         status: 500,
