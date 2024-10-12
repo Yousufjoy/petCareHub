@@ -38,7 +38,7 @@ export async function POST(request) {
     return new Response(null, {
       status: 302, // Found (redirection)
       headers: {
-        Location: "http://localhost:3000/payment/cancel",
+        Location: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/cancel`,
       },
     });
   } catch (error) {

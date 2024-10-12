@@ -4,7 +4,7 @@ export async function POST(request) {
   try {
     const body = await request.text(); // Read the request body as text
     const successOrder = new URLSearchParams(body); // Parse the URL-encoded data
-    console.log(successOrder)
+    console.log(successOrder);
 
     // Convert the URLSearchParams object to a plain object
     const successOrderObj = {};
@@ -28,8 +28,6 @@ export async function POST(request) {
       },
     };
 
-   
-
     const db = await connectDB();
     const orderCollection = db.collection("orders");
 
@@ -42,7 +40,7 @@ export async function POST(request) {
     return new Response(null, {
       status: 302, // Found (redirection)
       headers: {
-        Location: "http://localhost:3000/payment/success",
+        Location: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/success`,
       },
     });
   } catch (error) {

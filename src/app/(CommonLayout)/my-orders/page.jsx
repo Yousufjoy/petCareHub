@@ -11,7 +11,7 @@ const MyOrders = () => {
 
   const loadData = async () => {
     const resp = await fetch(
-      `http://localhost:3000/my-orders/api/${session?.user?.email}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/my-orders/api/${session?.user?.email}`
     );
     const data = await resp.json();
     setOrders(data?.myOrders);
@@ -29,7 +29,7 @@ const MyOrders = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const deleted = await fetch(
-          `http://localhost:3000/my-orders/api/order/${id}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/my-orders/api/order/${id}`,
           {
             method: "DELETE",
           }

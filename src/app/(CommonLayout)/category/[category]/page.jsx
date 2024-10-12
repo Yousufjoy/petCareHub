@@ -14,7 +14,7 @@ const CategoryPage = ({ params }) => {
   const fetchCategoryData = async (searchQuery = "") => {
     setSearching(true);
     try {
-      const url = new URL(`http://localhost:3000/category/api/${category}`);
+      const url = new URL(`${process.env.NEXT_PUBLIC_BASE_URL}/category/api/${category}`);
       if (searchQuery) {
         url.searchParams.append("q", searchQuery);
       }

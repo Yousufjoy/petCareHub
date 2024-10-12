@@ -15,7 +15,7 @@ const AdminPetCard = ({ pet }) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         const deleted = await fetch(
-          `http://localhost:3000/admin-dashboard/adoptions/api/adoption/${id}`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/admin-dashboard/adoptions/api/adoption/${id}`,
           {
             method: "DELETE",
           }

@@ -35,7 +35,7 @@ const SignUpPage = () => {
     };
 
     // Send the new user data to your API
-    const resp = await fetch("http://localhost:3000/signup/api", {
+    const resp = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/signup/api`, {
       method: "POST",
       body: JSON.stringify(newUser),
       headers: {

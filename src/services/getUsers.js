@@ -1,6 +1,6 @@
 export const getAllUsers = async () => {
   const res = await fetch(
-    "http://localhost:3000/admin-dashboard/customers/api/users"
+    `${process.env.NEXT_PUBLIC_BASE_URL}/admin-dashboard/customers/api/users`
   );
   const users = await res.json();
   return users;

@@ -2,7 +2,9 @@
 //that will do the logic handling & logic handling will be done by  3rd phase which is in each page's api route
 
 export const getAllProducts = async (sortOrder = "") => {
-  const url = new URL("http://localhost:3000/products/api/get-all");
+  const url = new URL(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/get-all`
+  );
   if (sortOrder) {
     url.searchParams.append("sort", sortOrder);
   }
@@ -12,13 +14,17 @@ export const getAllProducts = async (sortOrder = "") => {
 };
 
 export const getProductDetails = async (id) => {
-  const res = await fetch(`http://localhost:3000/products/api/${id}`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/${id}`
+  );
   const product = await res.json();
   return product;
 };
 
 export const getProductCategory = async (category, sortOrder = "") => {
-  const url = new URL(`http://localhost:3000/category/api/${category}`);
+  const url = new URL(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/category/api/${category}`
+  );
   if (sortOrder) {
     url.searchParams.append("sort", sortOrder);
   }
@@ -27,9 +33,12 @@ export const getProductCategory = async (category, sortOrder = "") => {
   return product;
 };
 
-export const getSearchedProduct = async (inputValue, sortOrder = "Sort By (Default)") => {
+export const getSearchedProduct = async (
+  inputValue,
+  sortOrder = "Sort By (Default)"
+) => {
   const res = await fetch(
-    `http://localhost:3000/products/api/get-all?q=${inputValue}&sort=${sortOrder}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/products/api/get-all?q=${inputValue}&sort=${sortOrder}`
   );
   const searchedProducts = await res.json();
   return searchedProducts;
@@ -37,7 +46,7 @@ export const getSearchedProduct = async (inputValue, sortOrder = "Sort By (Defau
 
 export const getSearchedProductCategory = async (category) => {
   const res = await fetch(
-    `http://localhost:3000/category/api/${category}?q=${inputValue}`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/category/api/${category}?q=${inputValue}`
   );
   const product = await res.json();
   return product;

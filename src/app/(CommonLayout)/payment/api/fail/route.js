@@ -40,7 +40,7 @@ export async function POST(request) {
     return new Response(null, {
       status: 302, // Found (redirection)
       headers: {
-        Location: "http://localhost:3000/payment/fail",
+        Location: `${process.env.NEXT_PUBLIC_BASE_URL}/payment/fail`,
       },
     });
   } catch (error) {

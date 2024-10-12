@@ -23,7 +23,7 @@ const UpdateProduct = ({ params }) => {
     };
 
     const resp = await fetch(
-      `http://localhost:3000/admin-dashboard/productlist/api/product/${params.id}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/admin-dashboard/productlist/api/product/${params.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(updateProduct),

@@ -11,7 +11,7 @@ const UpdatePage = ({ params }) => {
 
   const loadOrder = async () => {
     const orderDetails = await fetch(
-      `http://localhost:3000/my-orders/api/order/${params.id}`
+      `${process.env.NEXT_PUBLIC_BASE_URL}/my-orders/api/order/${params.id}`
     );
     const data = await orderDetails.json();
     setOrder(data.data);
@@ -25,7 +25,7 @@ const UpdatePage = ({ params }) => {
       address: event.target.address.value,
     };
     const resp = await fetch(
-      `http://localhost:3000/my-orders/api/order/${params.id}`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/my-orders/api/order/${params.id}`,
       {
         method: "PATCH",
         body: JSON.stringify(updatedOrder),
