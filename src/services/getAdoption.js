@@ -1,5 +1,7 @@
 export const getAllAdoptions = async () => {
-  return await fetch("http://localhost:3000/adoption/api/get-all-adoption");
+  const res = await fetch("http://localhost:3000/adoption/api/get-all-adoption");
+  const allAdoptions = await res.json(); // Await the parsing of JSON data
+  return allAdoptions;
 };
 
 export const getAdoptionDetails = async (id) => {

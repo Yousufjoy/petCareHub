@@ -51,7 +51,7 @@ const CategoryPage = ({ params }) => {
   return (
     <>
       <div className="md:flex md:justify-between ">
-        <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[80px]">
+        <h1 className="font-fanwood text-primary md:text-[60px] md:text-start text-center text-[40px] md:pt-[80px] ">
           Products
         </h1>
 
@@ -71,22 +71,22 @@ const CategoryPage = ({ params }) => {
           >
             <button className="btn btn-primary">Search</button>
           </div>
-          <div className="md:pt-[100px] md:mt-0 mt-[30px] md:ml-0 ml-[60px]">
-            <select
-              className="select select-bordered w-full max-w-xs"
-              value={sortOrder}
-              onChange={handleSortChange}
-            >
-              <option value="Sort By (Default)">Sort By (Default)</option>
-              <option value="High To Low">High To Low</option>
-              <option value="Low To High">Low To High</option>
-            </select>
-          </div>
+        </div>
+        <div className="md:pt-[100px] md:mt-0 mt-[30px] md:ml-0 ml-[60px] ">
+          <select
+            className="select select-bordered w-full max-w-xs"
+            value={sortOrder}
+            onChange={handleSortChange}
+          >
+            <option value="Sort By (Default)">Sort By (Default)</option>
+            <option value="High To Low">High To Low</option>
+            <option value="Low To High">Low To High</option>
+          </select>
         </div>
       </div>
 
       <div className="border-t border-gray-300 mt-6"></div>
-      <div className="md:grid md:grid-cols-3 md:gap-12 md:mx-auto md:mt-12 ml-[20px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-24 md:mx-auto md:mt-12 ml-[20px]">
         {searching || !products ? (
           <span className="loading loading-ring loading-lg"></span>
         ) : (

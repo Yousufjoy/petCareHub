@@ -1,14 +1,21 @@
 "use client";
 
 import { getAllOrders } from "@/services/getOrders";
+import { getAllUsers } from "@/services/getUsers";
 import { useState, useEffect } from "react";
-import { FaShoppingBag, FaTimesCircle, FaDollarSign } from "react-icons/fa";
+import {
+  FaShoppingBag,
+  FaTimesCircle,
+  FaDollarSign,
+  FaUserAlt,
+} from "react-icons/fa";
 
 const Ordernfo = () => {
   const [successOrderPending, setSuccessOrderPending] = useState(0);
   const [orderCancelled, setOrderCancelled] = useState(0);
   const [orderCount, setOrderCount] = useState(0);
   const [totalIncome, setTotalIncome] = useState(0);
+  const [users, setUsers] = useState([]);
 
   const formatPrice = (price) => {
     if (typeof price === "number") {
@@ -45,6 +52,11 @@ const Ordernfo = () => {
         setSuccessOrderPending(successOrders);
         setOrderCount(totalOrders);
         setTotalIncome(income);
+
+        const users = await getAllUsers();
+        setUsers(users.allUsers);
+
+        console.log(users);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
@@ -55,6 +67,16 @@ const Ordernfo = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+      {/* Number of users*/}
+      <div className="bg-gray-200 p-4 rounded-lg shadow-md flex items-center">
+        <div className="text-blue-600 text-3xl mr-4">
+          <FaUserAlt />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold">Total Users</h3>
+          <p className="text-3xl font-bold">{users.length}</p>
+        </div>
+      </div>
       {/* Order Successful Card */}
       <div className="bg-blue-200 p-4 rounded-lg shadow-md flex items-center">
         <div className="text-blue-600 text-3xl mr-4">

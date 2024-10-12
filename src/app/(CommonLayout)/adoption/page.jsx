@@ -14,8 +14,8 @@ const AdoptionPage = () => {
     const fetchAdoptionData = async () => {
       try {
         const response = await getAllAdoptions();
-        const data = await response.json();
-        setAdoption(data);
+
+        setAdoption(response);
         console.log("Fetched adoption data:", data);
       } catch (error) {
         console.log("Error fetching adoption data:", error);

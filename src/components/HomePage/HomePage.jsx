@@ -12,7 +12,6 @@ function HomePage() {
       <Banner />
       <AboutUs />
       <CategoryProducts />
-
       <Products />
       <ContactUs />
     </div>

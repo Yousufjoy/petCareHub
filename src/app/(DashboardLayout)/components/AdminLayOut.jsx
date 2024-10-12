@@ -114,14 +114,7 @@ const AdminLayout = ({ children }) => {
                 Adoptions
               </Link>
             </li>
-            <li>
-              <Link
-                href="/admin-dashboard/customers"
-                className="block p-2 hover:bg-gray-700 rounded"
-              >
-                Customers
-              </Link>
-            </li>
+
           </ul>
         </nav>
       </aside>

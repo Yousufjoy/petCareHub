@@ -1,14 +1,14 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
-
 import React from "react";
-import { signIn, useSession } from "next-auth/react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
 import SocialSignin from "@/components/Shared/SocialSignin";
 
 const LoginPage = () => {
+  const [error, setError] = useState(null); // Error state
   const router = useRouter();
-  const session = useSession();
   const searchParams = useSearchParams();
   const path = searchParams.get("redirect");
 
@@ -24,17 +24,17 @@ const LoginPage = () => {
     });
 
     if (resp?.ok) {
-      // Check user role after successful login
+      // Fetch the session and check the user role
       const session = await fetch("/api/auth/session").then((res) =>
         res.json()
       );
       if (session?.user?.role === "admin") {
         router.push("/admin-dashboard"); // Redirect to admin dashboard
       } else {
-        router.push(path ? path : "/"); // Redirect to homepage or the intended path
+        router.push(path ? path : "/"); // Redirect to homepage or intended path
       }
     } else {
-      console.error("Failed to login");
+      setError("Invalid email or password. Please try again."); // Set error message
     }
   };
 
@@ -86,6 +86,9 @@ const LoginPage = () => {
                 required
               />
             </div>
+
+            {/* Error Message */}
+            {error && <div className="mt-2 text-red-500 text-sm">{error}</div>}
 
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
