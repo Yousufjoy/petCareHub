@@ -93,7 +93,7 @@ function AdoptionForm() {
         {/* Name of The Pet */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">
-            Pet's Name
+            Pet Name
           </label>
           <input
             type="text"
@@ -119,7 +119,7 @@ function AdoptionForm() {
         {/* Gender */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">
-            Pet's Gender
+            Pet Gender
           </label>
           <select
             name="gender"
@@ -134,7 +134,7 @@ function AdoptionForm() {
         {/* Age */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">
-            Pet's Age
+            Pet Age
           </label>
           <input
             type="number"
@@ -147,7 +147,7 @@ function AdoptionForm() {
         {/* Owner Details */}
         <div>
           <label className="block text-lg font-semibold text-black mb-2">
-            Owner's Contact No
+            Owner Contact No
           </label>
           <input
             type="tel" // Use 'tel' for better control of phone number inputs

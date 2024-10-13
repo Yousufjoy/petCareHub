@@ -1,31 +1,38 @@
-import { signIn, useSession } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 import { FcGoogle } from "react-icons/fc";
+import { Suspense } from "react";
 
-const SocialSignin = () => {
-  // const router = useRouter();
+const SocialSigninContent = () => {
   const searchParams = useSearchParams();
-
   const path = searchParams.get("redirect");
-  // const session = useSession()
 
   const handleSocialLogin = async (provider) => {
-    const resp = await signIn(provider, {
-      redirect: true,
-      callbackUrl: path ? path : "/",
-    });
+    try {
+      await signIn(provider, {
+        redirect: true,
+        callbackUrl: path ? path : "/",
+      });
+    } catch (error) {
+      console.error("Social login error:", error);
+    }
   };
+
   return (
-    <>
-      <button
-        onClick={() => {
-          handleSocialLogin("google");
-        }}
-        className="btn flex items-center justify-center text-3xl my-3"
-      >
-        <FcGoogle />
-      </button>
-    </>
+    <button
+      onClick={() => handleSocialLogin("google")}
+      className="btn flex items-center justify-center text-3xl my-3"
+    >
+      <FcGoogle />
+    </button>
+  );
+};
+
+const SocialSignin = () => {
+  return (
+    <Suspense fallback={<div>Loading social login...</div>}>
+      <SocialSigninContent />
+    </Suspense>
   );
 };
 

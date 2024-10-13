@@ -1,5 +1,8 @@
+
+
 import { connectDB } from "@/lib/connectDB";
 import { NextResponse } from "next/server";
+export const dynamic = "force-dynamic"; // Ensure dynamic rendering
 
 export const GET = async (request) => {
   const db = await connectDB();

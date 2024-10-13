@@ -1,4 +1,5 @@
 "use client";
+
 import Carousal from "@/components/AdoptoinPage/Carousal";
 import PetsInfo from "@/components/AdoptoinPage/PetsInfo";
 import PetCard from "@/components/Cards/PetCard";

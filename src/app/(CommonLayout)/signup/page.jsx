@@ -72,9 +72,9 @@ const SignUpPage = () => {
               Sign Up now!
             </h1>
             <p className="py-6 text-gray-700 text-center lg:text-left font-fanwood text-xl">
-              Join the Family! "Create an account to unlock personalized pet
-              care tips, exclusive deals, and a seamless shopping experience
-              tailored to your furry friend's needs."
+              Join the Family! Create an account to unlock personalized pet care
+              tips, exclusive deals, and a seamless shopping experience tailored
+              to your furry friends needs.
             </p>
           </div>
         </div>

@@ -1,12 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import Image from "next/image";
 import React from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import SocialSignin from "@/components/Shared/SocialSignin";
 
-const LoginPage = () => {
+const LoginPageContent = () => {
   const [error, setError] = useState(null); // Error state
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -54,9 +54,9 @@ const LoginPage = () => {
               Login now!
             </h1>
             <p className="py-6 text-gray-700 text-center lg:text-left font-fanwood text-xl">
-              Welcome Back! "Reconnect with your pet’s favorite treats and
+              Welcome Back! Reconnect with your pet’s favorite treats and
               essentials. Log in to manage your orders, track deliveries, and
-              more."
+              more.
             </p>
           </div>
         </div>
@@ -99,6 +99,14 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const LoginPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginPageContent />
+    </Suspense>
   );
 };
 

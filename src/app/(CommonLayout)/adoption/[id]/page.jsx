@@ -9,8 +9,16 @@ const DetailsPage = async ({ params }) => {
     return <div className="text-center mt-10">Failed to load pet details.</div>;
   }
 
-  const { _id, image, petName, location, gender, age, description, phoneNumber } =
-    details.pet;
+  const {
+    _id,
+    image,
+    petName,
+    location,
+    gender,
+    age,
+    description,
+    phoneNumber,
+  } = details.pet;
 
   return (
     <div className="max-w-6xl mx-auto p-8 bg-secondary min-h-screen">
@@ -83,7 +91,7 @@ const DetailsPage = async ({ params }) => {
           <div className="text-center">
             <p className="text-6xl mb-4">🐶</p>
             <p className="text-lg">
-              You'll save a life and gain a loyal companion
+              You will save a life and gain a loyal companion
             </p>
           </div>
           <div className="text-center">
