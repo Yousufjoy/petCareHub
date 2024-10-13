@@ -55,8 +55,6 @@ const Ordernfo = () => {
 
         const users = await getAllUsers();
         setUsers(users.allUsers);
-
-        console.log(users);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
@@ -83,7 +81,7 @@ const Ordernfo = () => {
           <FaShoppingBag />
         </div>
         <div>
-          <h3 className="text-xl font-bold">Order Successful</h3>
+          <h3 className="text-xl font-bold">Order Successful!</h3>
           <p className="text-3xl font-bold">{successOrderPending}</p>
         </div>
       </div>
