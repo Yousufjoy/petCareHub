@@ -1,5 +1,4 @@
 "use client";
-export const dynamic = "force-dynamic";
 
 import { getAllOrders } from "@/services/getOrders";
 import { getAllUsers } from "@/services/getUsers";
