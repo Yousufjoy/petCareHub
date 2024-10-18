@@ -46,7 +46,6 @@ const handler = NextAuth({
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     }),
   ],
-  secret: "3360b3595600bad7b6fb1693aa1f2a5e",
   pages: {
     signIn: "/login",
   },
